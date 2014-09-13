@@ -17,7 +17,7 @@ class NestedListIterator
         }
         void advance() {
             if (m_cur->nestedNode) {
-                if (m_cur->next) m_stack(m_cur->next);
+                if (m_cur->next) m_stack.push(m_cur->next);
                 m_cur = m_cur->nestedNode;
             }
             else if (m_cur->next) {
