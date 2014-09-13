@@ -1,0 +1,31 @@
+#include <vector>
+using namespace std;
+
+vector<vector<unsigned int>> getCombinations(unsigned int num, unsigned int minStart)
+{
+    vector<vector<unsigned int>> ret;
+    for (int i = minStart; i <= sqrt(num); i++) {
+        if (num%i != 0) continue;
+        if (num/i > 1) {
+            vector<vector<unsigned int>> subCombs = getCombinations(num/i, i);
+            for (int j = 0; j < subCombs.size(); j++) {
+                subCombs[j].push_back(i);
+                ret.push_back(subCombs[j]);
+            }
+        }
+    }
+    vector<unsigned int> v(1, num);
+    ret.push_back(v);
+    return ret;
+}
+vector<vector<unsigned int>> getCombinations(unsigned int num)
+{
+    return getCombinations(num, 2);
+}
+
+int main(int argc, _TCHAR* argv[])
+{
+	vector<vector<unsigned int>> ret = getCombinations(24);
+	//vector<vector<unsigned int>> ret = getCombinations(47);
+	return 0;
+}
