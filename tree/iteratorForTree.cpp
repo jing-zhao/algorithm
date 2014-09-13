@@ -1,11 +1,3 @@
-struct TreeNode
-{
-    int val;
-    TreeNode* left;
-    TreeNode* right
-    TreeNode(int num) :val(num), left(0), right(0) {}
-}
-
 class TreePostOrderIterator
 {
     public:
@@ -23,6 +15,7 @@ class TreePostOrderIterator
             return m_cur;
         }
         void advance() {
+			m_cur = NULL;
             while (!m_stack.empty()) {
                 TreeNode* n = m_stack.top();
                 m_stack.pop();
@@ -41,9 +34,21 @@ class TreePostOrderIterator
                     m_stack.push(n->left);
                 }
             }
-            m_cur = NULL;
         }
     private:
         TreeNode* m_cur;
         stack<TreeNode*> m_stack;
+};
+
+int main(int argc, _TCHAR* argv[])
+{
+	TreeNode* root = deSerialize(cin);
+	TreePostOrderIterator it(root);
+	while (1) {
+		TreeNode* n = it.getCur();
+		if (!n) break;
+		cout << n->val << ' ';
+		it.advance();
+	}
+	return 0;
 }
