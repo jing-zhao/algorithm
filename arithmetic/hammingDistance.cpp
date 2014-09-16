@@ -6,5 +6,5 @@ int hammingDistance(int n1, int n2)
         cnt++;
         n &= n-1;
     }
-    return n;
+    return cnt;
 }
