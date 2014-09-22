@@ -6,7 +6,6 @@ int maxProduct(int A[], int start, int end) {
     }
     return maxProd;
 }
-// Find the largest subsequence of the given array that yields the largest PRODUCT
 int maxProduct(int A[], int n) {
     int maxProd = INT_MIN, curProd = 1, firstNeg = -1;
     for (int i = 0; i < n; i++) {
